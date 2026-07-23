@@ -1,0 +1,228 @@
+.home {
+  min-height: 100vh;
+  background: #371f1d;
+}
+
+.home-header {
+  padding: 24px 40px;
+  position: relative;
+}
+
+.home-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.home-brand {
+  font-family: 'Shrikhand', cursive;
+  font-size: 40px;
+  color: #c9a84c;
+  letter-spacing: 1px;
+}
+
+.home-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(201, 168, 76, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(201, 168, 76, 0.3);
+  transform: translateY(-2px);
+}
+
+.icon-btn img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(0.85);
+}
+
+.home-title-section {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.home-heading {
+  font-family: 'Shrikhand', cursive;
+  font-size: 53px;
+  color: #ffffff;
+  margin-bottom: 12px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.home-subtitle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: #d4c5a0;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.home-main {
+  padding: 16px 40px 40px;
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.case-card {
+  background: #f5ebe0;
+  border-radius: 16px;
+  padding: 24px;
+  border-top: 4px solid;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.case-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.case-area {
+  font-family: 'DM Serif Display', serif;
+  font-size: 12px;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.case-difficulty {
+  font-family: 'DM Serif Display', serif;
+  font-size: 13px;
+  color: #371f1d;
+  opacity: 0.7;
+}
+
+.case-title {
+  font-family: 'Shrikhand', cursive;
+  font-size: 22px;
+  color: #371f1d;
+  margin-bottom: 10px;
+}
+
+.case-description {
+  font-family: 'DM Serif Display', serif;
+  font-size: 15px;
+  color: #5a4a3a;
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.case-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.case-duration {
+  font-family: 'DM Serif Display', serif;
+  font-size: 14px;
+  color: #7a6a5a;
+}
+
+.case-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.case-btn {
+  font-family: 'Shrikhand', cursive;
+  font-size: 14px;
+  background: #371f1d;
+  color: #f5ebe0;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.case-btn:hover {
+  background: #c9a84c;
+  color: #371f1d;
+  transform: translateY(-1px);
+}
+
+.case-btn-view {
+  background: transparent;
+  color: #371f1d;
+  border: 2px solid #371f1d;
+}
+
+.case-btn-view:hover {
+  background: #371f1d;
+  color: #f5ebe0;
+}
+
+@media (max-width: 768px) {
+  .home-header {
+    padding: 16px 20px;
+  }
+
+  .home-brand {
+    font-size: 28px;
+  }
+
+  .home-heading {
+    font-size: 32px;
+  }
+
+  .home-subtitle {
+    font-size: 16px;
+  }
+
+  .home-main {
+    padding: 16px 20px;
+  }
+
+  .cases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .case-actions {
+    width: 100%;
+  }
+
+  .case-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
