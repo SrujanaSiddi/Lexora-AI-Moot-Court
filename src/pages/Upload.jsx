@@ -1,8 +1,15 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { IconUpload, IconFileText, IconX, IconCheck, IconArrowRight, IconLightbulb } from '../components/icons'
 import './Upload.css'
 
-export default function Upload({ onMenuClick }) {
+const STEPS = [
+  { title: 'Upload your proposition', desc: 'Add the moot court problem statement as a PDF.' },
+  { title: 'AI reads and structures it', desc: 'Lexora prepares a guided session around the case.' },
+  { title: 'Start your mock practice', desc: 'Work through issues, laws, memorial and oral practice.' },
+]
+
+export default function Upload() {
   const [file, setFile] = useState(null)
   const [dragOver, setDragOver] = useState(false)
   const fileInputRef = useRef(null)
@@ -29,74 +36,121 @@ export default function Upload({ onMenuClick }) {
     }
   }
 
+  const handleRemove = () => {
+    setFile(null)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
+
   return (
     <div className="upload-page">
-      <header className="upload-header">
-        <div className="upload-top">
-          <h1 className="upload-brand">Lexora</h1>
-          <button className="icon-btn" onClick={onMenuClick} title="Menu">
-            <img src="/icons/dashboard.png" alt="Menu" />
-          </button>
+      <div className="page-header">
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <span>Learning</span>
+        </nav>
+        <div className="page-header-row">
+          <div>
+            <h1 className="page-title">Upload Proposition</h1>
+            <p className="page-desc">
+              Upload your moot court proposition in PDF format to begin a guided practice session
+              — or practice with a case from the library.
+            </p>
+          </div>
         </div>
-        <div className="upload-title-section">
-          <h2 className="upload-heading">Upload Your Proposition!</h2>
-          <p className="upload-subtitle">
-            Upload your moot court proposition in PDF format to begin your practice session.
-          </p>
-        </div>
-      </header>
+      </div>
 
       <main className="upload-main">
-        <div
-          className={`upload-area ${dragOver ? 'drag-over' : ''} ${file ? 'has-file' : ''}`}
-          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
-          onDragLeave={() => setDragOver(false)}
-          onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".pdf"
-            onChange={(e) => handleFile(e.target.files[0])}
-            style={{ display: 'none' }}
-          />
-          
-          {file ? (
-            <div className="upload-file-info">
-              <div className="upload-icon-circle">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" strokeWidth="1.5">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                  <polyline points="10 9 9 9 8 9"/>
-                </svg>
-              </div>
-              <p className="upload-filename">{file.name}</p>
-              <p className="upload-filesize">{(file.size / 1024).toFixed(1)} KB</p>
-              <p className="upload-change">Click to change file</p>
-            </div>
-          ) : (
-            <div className="upload-placeholder">
-              <div className="upload-icon-circle">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" strokeWidth="1.5">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="17 8 12 3 7 8"/>
-                  <line x1="12" y1="3" x2="12" y2="15"/>
-                </svg>
-              </div>
-              <p className="upload-text">Upload a pdf</p>
-              <p className="upload-hint">Drag and drop your file here or click to browse</p>
-            </div>
-          )}
-        </div>
+        <div className="upload-grid">
+          <div className="upload-col-main">
+            <div
+              className={`upload-area ${dragOver ? 'drag-over' : ''} ${file ? 'has-file' : ''}`}
+              onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInputRef.current?.click() } }}
+              aria-label="Upload a PDF proposition"
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf"
+                onChange={(e) => handleFile(e.target.files[0])}
+                style={{ display: 'none' }}
+                aria-hidden="true"
+              />
 
-        {file && (
-          <button className="upload-btn" onClick={handleUpload}>
-            Start Practice Session
-          </button>
-        )}
+              {file ? (
+                <div className="upload-file-info">
+                  <span className="upload-file-icon">
+                    <IconFileText size={30} />
+                  </span>
+                  <div className="upload-file-meta">
+                    <p className="upload-filename">{file.name}</p>
+                    <p className="upload-filesize">{(file.size / 1024).toFixed(1)} KB</p>
+                  </div>
+                  <span className="badge badge-green"><IconCheck size={12} /> Ready</span>
+                  <p className="upload-change">Click anywhere to replace the file</p>
+                </div>
+              ) : (
+                <div className="upload-placeholder">
+                  <span className="upload-drop-icon">
+                    <IconUpload size={30} />
+                  </span>
+                  <p className="upload-text">Drag &amp; drop your proposition here</p>
+                  <p className="upload-hint">or click to browse your files</p>
+                  <span className="upload-formats">
+                    <span className="badge badge-gray">PDF</span>
+                    <span className="upload-formats-note">Document formats · Max 25 MB</span>
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {file && (
+              <div className="upload-actions">
+                <button className="btn btn-danger-soft" onClick={handleRemove}>
+                  <IconX size={15} />
+                  Remove file
+                </button>
+                <button className="btn btn-primary btn-lg" onClick={handleUpload}>
+                  Start Practice Session
+                  <IconArrowRight size={16} />
+                </button>
+              </div>
+            )}
+          </div>
+
+          <aside className="upload-aside">
+            <div className="card">
+              <div className="card-head">
+                <h2 className="card-title">How it works</h2>
+              </div>
+              <div className="card-body upload-steps">
+                {STEPS.map((s, i) => (
+                  <div className="upload-step" key={s.title}>
+                    <span className="upload-step-num">{i + 1}</span>
+                    <div>
+                      <div className="upload-step-title">{s.title}</div>
+                      <div className="upload-step-desc">{s.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="card upload-tip">
+              <div className="upload-tip-head">
+                <span className="upload-tip-icon"><IconLightbulb size={18} /></span>
+                <span className="badge badge-amber">Tip</span>
+              </div>
+              <p className="upload-tip-text">
+                You can also pick a prepared proposition from the Case Library if you do not have your own yet.
+              </p>
+            </div>
+          </aside>
+        </div>
       </main>
     </div>
   )

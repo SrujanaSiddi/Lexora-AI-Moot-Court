@@ -1,0 +1,34 @@
+# Lexora backend - Python dependencies
+# Core web framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+python-dotenv==1.0.1
+pydantic==2.10.3
+
+# HTTP + auth
+httpx==0.28.1
+PyJWT==2.10.1
+
+# Document ingestion
+pymupdf==1.25.1
+python-docx==1.1.2
+
+# Retrieval
+faiss-cpu==1.9.0.post1
+rank-bm25==0.2.2
+
+# Embeddings / legal representation / NLI
+sentence-transformers==3.3.1
+# Uncomment on a GPU / if you want the density of torch wheels controlled manually:
+# torch>=2.2.0
+transformers==4.47.1
+safetensors==0.4.5
+
+# Speech
+faster-whisper==1.1.0
+edge-tts==7.0.0
+
+# Tests
+pytest==8.3.4
+pytest-asyncio==0.25.0

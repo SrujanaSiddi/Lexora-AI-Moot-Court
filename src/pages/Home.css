@@ -1,154 +1,107 @@
-.home {
-  min-height: 100vh;
-  background: #371f1d;
-}
-
-.home-header {
-  padding: 24px 40px;
-  position: relative;
-}
-
-.home-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.home-brand {
-  font-family: 'Shrikhand', cursive;
-  font-size: 40px;
-  color: #c9a84c;
-  letter-spacing: 1px;
-}
-
-.home-icons {
-  display: flex;
-  gap: 12px;
-}
-
-.icon-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  border: none;
-  background: rgba(201, 168, 76, 0.15);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.icon-btn:hover {
-  background: rgba(201, 168, 76, 0.3);
-  transform: translateY(-2px);
-}
-
-.icon-btn img {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) invert(0.85);
-}
-
-.home-title-section {
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-.home-heading {
-  font-family: 'Shrikhand', cursive;
-  font-size: 53px;
-  color: #ffffff;
-  margin-bottom: 12px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.home-subtitle {
-  font-family: 'DM Serif Display', serif;
-  font-size: 20px;
-  color: #d4c5a0;
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.5;
-}
-
-.home-main {
-  padding: 16px 40px 40px;
-}
-
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.case-card {
-  background: #f5ebe0;
-  border-radius: 16px;
-  padding: 24px;
-  border-top: 4px solid;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.home-page {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.case-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+.home-main {
+  padding: 8px 40px 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.case-card-header {
+.home-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 20px;
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px 18px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--tx), transform var(--tx), border-color var(--tx);
+}
+
+.case-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--case-accent);
+}
+
+.case-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-md);
+  border-color: var(--c-border-strong);
+}
+
+.case-card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
-.case-area {
-  font-family: 'DM Serif Display', serif;
-  font-size: 12px;
+.case-area-badge {
+  font-size: 11.5px;
+  font-weight: 700;
   color: #fff;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-}
-
-.case-difficulty {
-  font-family: 'DM Serif Display', serif;
-  font-size: 13px;
-  color: #371f1d;
-  opacity: 0.7;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 
 .case-title {
-  font-family: 'Shrikhand', cursive;
-  font-size: 22px;
-  color: #371f1d;
-  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+  line-height: 1.35;
+  margin-bottom: 8px;
 }
 
 .case-description {
-  font-family: 'DM Serif Display', serif;
-  font-size: 15px;
-  color: #5a4a3a;
-  line-height: 1.5;
+  font-size: 13.5px;
+  color: var(--c-text-2);
+  line-height: 1.6;
   flex: 1;
   margin-bottom: 16px;
 }
 
-.case-footer {
+.case-card-foot {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-border);
 }
 
 .case-duration {
-  font-family: 'DM Serif Display', serif;
-  font-size: 14px;
-  color: #7a6a5a;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-3);
+  white-space: nowrap;
 }
 
 .case-actions {
@@ -156,73 +109,25 @@
   gap: 8px;
 }
 
-.case-btn {
-  font-family: 'Shrikhand', cursive;
-  font-size: 14px;
-  background: #371f1d;
-  color: #f5ebe0;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  letter-spacing: 0.5px;
-}
-
-.case-btn:hover {
-  background: #c9a84c;
-  color: #371f1d;
-  transform: translateY(-1px);
-}
-
-.case-btn-view {
-  background: transparent;
-  color: #371f1d;
-  border: 2px solid #371f1d;
-}
-
-.case-btn-view:hover {
-  background: #371f1d;
-  color: #f5ebe0;
-}
-
 @media (max-width: 768px) {
-  .home-header {
-    padding: 16px 20px;
-  }
-
-  .home-brand {
-    font-size: 28px;
-  }
-
-  .home-heading {
-    font-size: 32px;
-  }
-
-  .home-subtitle {
-    font-size: 16px;
-  }
-
   .home-main {
-    padding: 16px 20px;
+    padding: 8px 20px 40px;
   }
 
   .cases-grid {
     grid-template-columns: 1fr;
   }
 
-  .case-footer {
+  .case-card-foot {
     flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .case-actions {
     width: 100%;
   }
 
-  .case-btn {
+  .case-actions .btn {
     flex: 1;
-    text-align: center;
   }
 }

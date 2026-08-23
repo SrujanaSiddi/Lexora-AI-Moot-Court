@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { IconBook, IconClock, IconArrowRight } from '../components/icons'
 import './Home.css'
 
 const casePdfs = [
@@ -10,7 +11,7 @@ const casePdfs = [
     difficulty: 'Intermediate',
     duration: '2-3 hours',
     description: 'A moot proposition dealing with constitutional rights and administrative law. Analyze fundamental rights violations and procedural fairness.',
-    color: '#c9a84c',
+    color: '#8a6d1f',
   },
   {
     id: 2,
@@ -30,7 +31,7 @@ const casePdfs = [
     difficulty: 'Beginner',
     duration: '1-2 hours',
     description: 'Dispute regarding environmental clearance and sustainable development. Covers pollution control regulations and statutory compliance.',
-    color: '#6b8e23',
+    color: '#4d7c0f',
   },
   {
     id: 4,
@@ -40,62 +41,84 @@ const casePdfs = [
     difficulty: 'Advanced',
     duration: '3-4 hours',
     description: 'Territorial dispute involving treaty interpretation and jurisdiction of international courts. Complex legal arguments required.',
-    color: '#4682b4',
+    color: '#1d4ed8',
   },
 ]
 
-export default function Home({ onMenuClick }) {
+const difficultyPill = (d) => {
+  const map = {
+    Beginner: 'pill-easy',
+    Intermediate: 'pill-medium',
+    Advanced: 'pill-hard',
+  }
+  return map[d] || 'pill-medium'
+}
+
+export default function Home() {
   const navigate = useNavigate()
 
   return (
-    <div className="home">
-      <header className="home-header">
-        <div className="home-top">
-          <h1 className="home-brand">Lexora</h1>
-          <div className="home-icons">
-            <button className="icon-btn" onClick={onMenuClick} title="Menu">
-              <img src="/icons/dashboard.png" alt="Menu" />
-            </button>
+    <div className="home-page">
+      <div className="page-header">
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <span>Learning</span>
+        </nav>
+        <div className="page-header-row">
+          <div>
+            <h1 className="page-title">Case Library</h1>
+            <p className="page-desc">
+              Every great advocate begins with preparation. Browse the collection of moot court
+              propositions and open one to begin a guided practice session.
+            </p>
+          </div>
+          <div className="page-actions">
+            <span className="badge badge-navy"><IconBook size={14} />{casePdfs.length} propositions available</span>
           </div>
         </div>
-        <div className="home-title-section">
-          <h2 className="home-heading">Explore some cases!</h2>
-          <p className="home-subtitle">
-            Every great advocate begins with preparation. Browse through our collection of moot court propositions and start your practice journey.
-          </p>
-        </div>
-      </header>
+      </div>
 
       <main className="home-main">
+        <div className="home-section-head">
+          <div>
+            <h2 className="section-title">Available Cases</h2>
+            <p className="section-desc">Select a proposition to start your structured mock session.</p>
+          </div>
+        </div>
+
         <div className="cases-grid">
           {casePdfs.map((c) => (
-            <div key={c.id} className="case-card" style={{ borderTopColor: c.color }}>
-              <div className="case-card-header">
-                <span className="case-area" style={{ background: c.color }}>{c.area}</span>
-                <span className="case-difficulty">{c.difficulty}</span>
+            <article key={c.id} className="card case-card" style={{ '--case-accent': c.color }}>
+              <div className="case-card-top">
+                <span className="case-area-badge" style={{ backgroundColor: c.color }}>
+                  {c.area}
+                </span>
+                <span className={`pill ${difficultyPill(c.difficulty)}`}>{c.difficulty}</span>
               </div>
               <h3 className="case-title">{c.title}</h3>
               <p className="case-description">{c.description}</p>
-              <div className="case-footer">
-                <span className="case-duration">{c.duration}</span>
+              <div className="case-card-foot">
+                <span className="case-duration">
+                  <IconClock size={14} />{c.duration}
+                </span>
                 <div className="case-actions">
                   <a
                     href={`/case-pdfs/${encodeURIComponent(c.file)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="case-btn case-btn-view"
+                    className="btn btn-outline btn-sm"
                   >
                     View PDF
                   </a>
                   <button
-                    className="case-btn"
+                    className="btn btn-primary btn-sm"
                     onClick={() => navigate('/practice', { state: { caseData: c } })}
                   >
                     Open Case
+                    <IconArrowRight size={14} />
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </main>
